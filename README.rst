@@ -15,6 +15,6 @@ How it works
 
   ::
 
-    .. code-block:: python
+.. code-block:: python
 
-    a = b.encode('https://github.com')
+a = b.encode('https://github.com')
