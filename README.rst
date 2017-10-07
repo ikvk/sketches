@@ -13,8 +13,6 @@ How it works
 
 2. two
 
-  ::
-
 .. code-block:: python
 
 a = b.encode('https://github.com')
