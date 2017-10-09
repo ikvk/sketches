@@ -1,7 +1,7 @@
 test go go
 ==========
 
-.. image:: https://avatars1.githubusercontent.com/u/2877163?v=4&s=460
+.. image:: https://github.com/ikvk/test/blob/master/tux.png
 
 
 How it works
@@ -17,4 +17,5 @@ How it works
 
 .. code-block:: python
 
-a = b.encode('https://github.com')
+    def a():
+        a = b.encode('https://github.com')
