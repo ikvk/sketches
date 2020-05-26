@@ -1,4 +1,5 @@
 """Запрещено использовать этот модуль для сдачи лабораторных и курсовых работ!"""
+import random
 
 SIDE_HUMAN = 'Человек'
 SIDE_PC = 'Компьютер'
@@ -71,7 +72,13 @@ def add_action(action: str):
 
 def get_step_coordinates_ps() -> (int, int):
     """логика игры компьютера"""
-    return 2, 2
+    # можно победить
+    pass
+    # противник следующим ходом победит
+    pass
+    # случайное свободное поле
+    empty_positions = [(row, col) for row in range(3) for col in range(3) if game_field[row][col] == CHAR_EMPTY]
+    return random.choice(empty_positions or (1, 1))
 
 
 if __name__ == '__main__':
@@ -107,5 +114,5 @@ if __name__ == '__main__':
                     (game_field[0][2], game_field[1][1], game_field[2][0]) == full_line:
                 winner = char
     # конец
-    add_action('★ Победил "{}"! ★'.format(winner))
+    add_action('★ Победил {} за "{}"! ★'.format({v: k for k, v in side_map.items()}[winner], winner))
     input()
