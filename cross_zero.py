@@ -10,7 +10,7 @@ CHAR_EMPTY = ' '
 
 # игровое поле
 game_field = [
-    [CHAR_EMPTY, CHAR_X, CHAR_X],
+    [CHAR_EMPTY, CHAR_EMPTY, CHAR_EMPTY],
     [CHAR_EMPTY, CHAR_EMPTY, CHAR_EMPTY],
     [CHAR_EMPTY, CHAR_EMPTY, CHAR_EMPTY],
 ]
@@ -69,7 +69,7 @@ def add_action(action: str):
     draw_field()
 
 
-def get_step_coordinates_ps():
+def get_step_coordinates_ps() -> (int, int):
     """логика игры компьютера"""
     return 2, 2
 
