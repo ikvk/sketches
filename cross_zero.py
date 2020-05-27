@@ -55,8 +55,7 @@ def get_side_map() -> dict:
 
 
 def draw_field():
-    for line in range(50):
-        print()
+    print('\n'*50)
     for action in action_log:
         print(action)
     print()
