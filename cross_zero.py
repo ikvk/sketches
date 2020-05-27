@@ -70,6 +70,10 @@ def add_action(action: str):
     draw_field()
 
 
+def get_empty_positions() -> [(int, int)]:
+    return [(row, col) for row in range(3) for col in range(3) if game_field[row][col] == CHAR_EMPTY]
+
+
 def get_step_coordinates_ps() -> (int, int):
     """логика игры компьютера"""
     # можно победить
@@ -77,8 +81,7 @@ def get_step_coordinates_ps() -> (int, int):
     # противник следующим ходом победит
     pass
     # случайное свободное поле
-    empty_positions = [(row, col) for row in range(3) for col in range(3) if game_field[row][col] == CHAR_EMPTY]
-    return random.choice(empty_positions or (1, 1))
+    return random.choice(get_empty_positions())
 
 
 if __name__ == '__main__':
@@ -113,6 +116,11 @@ if __name__ == '__main__':
             if (game_field[0][0], game_field[1][1], game_field[2][2]) == full_line or \
                     (game_field[0][2], game_field[1][1], game_field[2][0]) == full_line:
                 winner = char
+        if not winner and len(get_empty_positions()) == 0:
+            winner = CHAR_EMPTY
     # конец
-    add_action('★ Победил {} за "{}"! ★'.format({v: k for k, v in side_map.items()}[winner], winner))
+    if winner == CHAR_EMPTY:
+        add_action('★ Ничья! ★')
+    else:
+        add_action('★ Победил {} за "{}"! ★'.format({v: k for k, v in side_map.items()}[winner], winner))
     input()
