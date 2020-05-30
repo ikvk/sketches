@@ -1,11 +1,11 @@
 import os, re
 
 
-def file_duplicates():
+def duplicate_files():
     res = {}
     file_cnt = 0
     ignored_names = ('back', 'cd', 'front', 'inside',)
-    for root, subdirs, files in os.walk('C:/Загрузки/Armik сборники'):
+    for root, subdirs, files in os.walk('D:\Музыка\Гитара\Tommy Emmanuel'):
         for file_name in files:
             clear_file_name = re.sub("[^a-zA-Z ]+", "", file_name.rsplit('.', 1)[0]).lower().replace('armik', '')
             if clear_file_name in ignored_names:
@@ -29,12 +29,4 @@ def file_duplicates():
     print('uniq: {}'.format(len(res)))
 
 
-file_duplicates()
-
-
-'''
-all
-total: 90
-uniq: 79
-
-'''
+duplicate_files()
