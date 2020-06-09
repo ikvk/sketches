@@ -36,3 +36,16 @@ how
   body elements, indented relative to the
   term. Blank lines are not allowed
   between term and definition.
+
+
+Some.one - 111
+
+* *value1*='ALL' message
+* *value2*='ASCII', indicates
+
+
+Some.one - 222
+
+* *value1*: 'ALL' message
+* *value2*: 'ASCII', indicates
+

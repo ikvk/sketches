@@ -26,3 +26,5 @@ def masha():
         img_data = requests.get(url.format(i)).content
         with open('m/{}.jpg'.format(i), 'wb') as handler:
             handler.write(img_data)
+
+# todo http://multiki.arjlover.net/multiki/
