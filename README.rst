@@ -52,6 +52,6 @@ Some.one - 222
 
 MailBox.fetch - email message generator
 
-* *criteria*: message search criteria
-* *charset*: 'US-ASCII', indicates
+* *criteria* = 'ALL', message search criteria
+* *charset* = 'US-ASCII', indicates
 
