@@ -46,6 +46,6 @@ Some.one - 111
 
 Some.one - 222
 
-* *value1*: 'ALL' message
-* *value2*: 'ASCII', indicates
+| *value1*: 'ALL' message
+| *value2*: 'ASCII', indicates
 
