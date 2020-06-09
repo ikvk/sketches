@@ -49,3 +49,9 @@ Some.one - 222
 | *value1*: 'ALL' message
 | *value2*: 'ASCII', indicates
 
+
+MailBox.fetch - email message generator
+
+* *criteria*: message search criteria
+* *charset*: 'US-ASCII', indicates
+
