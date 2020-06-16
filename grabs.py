@@ -28,3 +28,5 @@ def masha():
             handler.write(img_data)
 
 # todo http://multiki.arjlover.net/multiki/
+
+# todo https://torgi.gov.ru
