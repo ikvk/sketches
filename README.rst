@@ -3,11 +3,6 @@ test go go
 
 .. image:: https://github.com/ikvk/test/blob/master/tux.png
 
-.. image:: https://github.com/ikvk/test/blob/master/tux.png
-   :height: 100
-   :width: 100
-   :scale: 50
-
 
 How it works
 ------------
