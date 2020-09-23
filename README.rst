@@ -3,7 +3,7 @@ test go go
 
 .. image:: https://github.com/ikvk/test/blob/master/tux.png
 
-Internal crossreference, like example_.
+Internal crossreference, like `example link`_.
 
 How it works
 ------------
@@ -38,6 +38,6 @@ how
   definition is one or more paragraphs
 
 
-.. _example:
+.. _`example link`:
 
 end
