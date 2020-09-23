@@ -3,6 +3,7 @@ test go go
 
 .. image:: https://github.com/ikvk/test/blob/master/tux.png
 
+Internal crossreference, like example_.
 
 How it works
 ------------
@@ -23,7 +24,7 @@ How it works
 3. three
 
 
-Internal crossreferences, like example_.
+
 
 
 Definition lists:
@@ -39,3 +40,4 @@ how
 
 .. _example:
 
+end
