@@ -23,6 +23,8 @@ How it works
 3. three
 
 
+Internal crossreferences, like example_.
+
 
 Definition lists:
 
@@ -33,3 +35,7 @@ what
 how
   The term is a one-line phrase, and the
   definition is one or more paragraphs
+
+
+.. _example:
+
