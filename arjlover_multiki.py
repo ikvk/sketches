@@ -1,27 +1,21 @@
 """
 grab http://multiki.arjlover.net
+just set SAVE_PATH var and run
 """
 import requests
+import io
 
-# just set SAVE_PATH var and run
-SAVE_PATH = 'E:/Мультфильмы/Советские'
+SAVE_PATH = 'E:/Мультфильмы/Советские1'
 
 
 def main(raw: str):
     for bi, block in enumerate(raw.split('</tr>')):
+        # names
         name, link, ext = '', '', ''
         for i, r in enumerate(block.split('</td>')):
             if i == 1:
-                name = r.split('>')[-2].replace('</a', '') \
-                    .replace('/', '_') \
-                    .replace('\\', '_') \
-                    .replace(':', '_') \
-                    .replace('*', '_') \
-                    .replace('?', '_') \
-                    .replace('"', '_') \
-                    .replace('>', '_') \
-                    .replace('<', '_') \
-                    .replace('|', '_')
+                bad_chars = ['/', '\\', ':', '*', '?', '"', '>', '<', '|', ]
+                name = ''.join(c for c in r.split('>')[-2].replace('</a', '') if c not in bad_chars)
             elif i == 5:
                 link = 'http://multiki.arjlover.net' + \
                        r.split('onClick')[0].replace('<td><a href="', '').replace('"', '').strip()
@@ -29,26 +23,39 @@ def main(raw: str):
         if not name:
             continue
         print(name, ext, link, '{}/3655'.format(bi, ))
+        if bi < 32:  # 32 36
+            continue
         # get
-        err, data = '', ''
+        err, data = '', io.BytesIO()
         try:
-            data = requests.get(link).content
+            # response = requests.get(link)
+            # data: bytes = response.content
+
+            response = requests.get(link, stream=True)
+            response.raise_for_status()
+            for chunk in response.iter_content(chunk_size=1024*1024*16):
+                print(len(chunk))
+                data.write(chunk)
+
         except Exception as e:
             err = str(e)
+            print(err)
         # write
         if not err:
-            with open('{}/{}.{}'.format(SAVE_PATH, name, ext), 'wb') as handler:
-                handler.write(data)
+            with open('{}/{}.{}'.format(SAVE_PATH, name, ext), 'w+') as fd:
+                v= data.getvalue()  # todo ValueError: I/O operation on closed file.
+                print(type(v))
+                fd.write(v)
         # log
-        with open('{}/_log.txt'.format(SAVE_PATH), 'a') as handler:
+        with open('{}/_log.txt'.format(SAVE_PATH), 'a') as fl:
             line = '{} # {}\n'.format(name, link)
             if err:
-                handler.write('ERR: {} # {}'.format(err, line))
+                fl.write('ERR: {} # {}'.format(err, line))
             else:
-                handler.write(line)
+                fl.write(line)
 
 
-raw = """<table><tr class=o>
+raw_data = """<table><tr class=o>
     <td class=a><a name="0"> </a> 1</td>
     <td class=l><a href="/info/13.reis.avi.html" >13 рейс</a></td>
     <td class=r>106.639.360</td>
@@ -40255,4 +40262,4 @@ raw = """<table><tr class=o>
 </tr></table>
 """
 if __name__ == '__main__':
-    main(raw)
+    main(raw_data)
