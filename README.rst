@@ -3,6 +3,7 @@ test go go
 
 .. image:: https://github.com/ikvk/test/blob/master/tux.png
 
+Internal crossreference, like `example link`_.
 
 How it works
 ------------
@@ -24,6 +25,8 @@ How it works
 
 
 
+
+
 Definition lists:
 
 what
@@ -33,3 +36,8 @@ what
 how
   The term is a one-line phrase, and the
   definition is one or more paragraphs
+
+
+.. _`example link`:
+
+end
