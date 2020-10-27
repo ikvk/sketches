@@ -23,36 +23,33 @@ def main(raw: str):
         if not name:
             continue
         print(name, ext, link, '{}/3655'.format(bi, ))
-        if bi < 32:  # 32 36
+        if bi < 32:  # 32big 36small
             continue
         # get
-        err, data = '', io.BytesIO()
+        err = ''
+        buf = io.BytesIO()
         try:
             # response = requests.get(link)
-            # data: bytes = response.content
-
+            # buf: bytes = response.content
             response = requests.get(link, stream=True)
             response.raise_for_status()
-            for chunk in response.iter_content(chunk_size=1024*1024*16):
+            for chunk in response.iter_content(chunk_size=1024 * 1024 * 16):
                 print(len(chunk))
-                data.write(chunk)
-
+                buf.write(chunk)
         except Exception as e:
             err = str(e)
             print(err)
         # write
         if not err:
-            with open('{}/{}.{}'.format(SAVE_PATH, name, ext), 'w+') as fd:
-                v= data.getvalue()  # todo ValueError: I/O operation on closed file.
-                print(type(v))
-                fd.write(v)
+            with open('{}/{}.{}'.format(SAVE_PATH, name, ext), 'wb') as video_file:
+                video_file.write(buf.getbuffer())
         # log
-        with open('{}/_log.txt'.format(SAVE_PATH), 'a') as fl:
+        with open('{}/_log.txt'.format(SAVE_PATH), 'a') as log_file:
             line = '{} # {}\n'.format(name, link)
             if err:
-                fl.write('ERR: {} # {}'.format(err, line))
+                log_file.write('ERR: {} # {}'.format(err, line))
             else:
-                fl.write(line)
+                log_file.write(line)
 
 
 raw_data = """<table><tr class=o>
