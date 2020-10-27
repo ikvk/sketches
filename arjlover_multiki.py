@@ -2,10 +2,16 @@
 grab http://multiki.arjlover.net
 just set SAVE_PATH var and run
 """
+import shutil
 import requests
-import io
 
-SAVE_PATH = 'E:/Мультфильмы/Советские1'
+SAVE_PATH = 'E:/Мультфильмы/Советские'
+
+
+def download_file(url: str, file_path: str):
+    with requests.get(url, stream=True) as r:
+        with open(file_path, 'wb') as f:
+            shutil.copyfileobj(r.raw, f)
 
 
 def main(raw: str):
@@ -25,31 +31,20 @@ def main(raw: str):
         print(name, ext, link, '{}/3655'.format(bi, ))
         if bi < 32:  # 32big 36small
             continue
-        # get
+        # download
         err = ''
-        buf = io.BytesIO()
         try:
-            # response = requests.get(link)
-            # buf: bytes = response.content
-            response = requests.get(link, stream=True)
-            response.raise_for_status()
-            for chunk in response.iter_content(chunk_size=1024 * 1024 * 16):
-                print(len(chunk))
-                buf.write(chunk)
+            download_file(link, '{}/{}.{}'.format(SAVE_PATH, name, ext))
         except Exception as e:
             err = str(e)
             print(err)
-        # write
-        if not err:
-            with open('{}/{}.{}'.format(SAVE_PATH, name, ext), 'wb') as video_file:
-                video_file.write(buf.getbuffer())
         # log
         with open('{}/_log.txt'.format(SAVE_PATH), 'a') as log_file:
-            line = '{} # {}\n'.format(name, link)
+            log_line = '{} # {}\n'.format(name, link)
             if err:
-                log_file.write('ERR: {} # {}'.format(err, line))
+                log_file.write('ERR: {} # {}'.format(err, log_line))
             else:
-                log_file.write(line)
+                log_file.write(log_line)
 
 
 raw_data = """<table><tr class=o>
