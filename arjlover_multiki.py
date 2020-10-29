@@ -29,8 +29,7 @@ def main(raw: str):
         if not name:
             continue
         print(name, ext, link, '{}/3655'.format(bi, ))
-        if bi < 32:  # 32big 36small
-            continue
+        # if bi < 32:  # 32big 36small continue
         # download
         err = ''
         try:
