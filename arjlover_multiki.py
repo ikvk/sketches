@@ -1,11 +1,12 @@
 """
 grab http://multiki.arjlover.net
-just set SAVE_PATH var and run
+just set 2 PATH and run
 """
 import shutil
 import requests
 
 SAVE_PATH = 'E:/Мультфильмы/Советские'
+DATA_PATH = 'D:/develop/sketches/files/arjlover_multiki.txt'
 
 
 def download_file(url: str, file_path: str):
@@ -47,6 +48,6 @@ def main(raw: str):
 
 
 if __name__ == '__main__':
-    with open('files/arjlover_multiki.txt', 'r', encoding='utf8') as f:
+    with open(DATA_PATH, 'r', encoding='utf8') as f:
         raw_data = f.read()
     main(raw_data)
