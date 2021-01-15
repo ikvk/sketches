@@ -47,7 +47,7 @@ end
 
     <img src="https://ya.ru https://img.shields.io/pypi/dm/imap_tools.svg?label=%E2%AD%B3&style=social" alt="PyPI - Downloads">
 
-    <a href="https://pypi.python.org/pypi/dateparser">
-        <img src="https://img.shields.io/pypi/dm/imap_tools.svg" alt="PyPI - Downloads">
+    <a href="https://pypi.python.org/pypi/imap_tools">
+        <img src="https://img.shields.io/pypi/dm/imap_tools.svg?label=%E2%AD%B3&style=social" alt="PyPI - Downloads">
     </a>
 
