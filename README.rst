@@ -43,8 +43,6 @@ how
 end
 
 
+.. raw:: html
 
-===============  ====================================================================================
-aaaa             https://ya.ru https://img.shields.io/pypi/dm/imap_tools?label=%E2%AD%B3&style=social
-b                b
-===============  ====================================================================================
+    https://ya.ru https://img.shields.io/pypi/dm/imap_tools?label=%E2%AD%B3&style=social
