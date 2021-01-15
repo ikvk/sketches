@@ -42,3 +42,9 @@ how
 
 end
 
+
+.. raw:: html
+
+    <a href="https://pypi.python.org/pypi/imap_tools">
+        <img src="https://img.shields.io/pypi/dm/imap_tools.svg?style=social" alt="PyPI - Downloads">
+    </a>
