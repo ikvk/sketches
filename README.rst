@@ -45,4 +45,4 @@ end
 
 .. raw:: html
 
-    https://ya.ru https://img.shields.io/pypi/dm/imap_tools?label=%E2%AD%B3&style=social
+    <img src="https://ya.ru https://img.shields.io/pypi/dm/imap_tools.svg?label=%E2%AD%B3&style=social" alt="PyPI - Downloads">
