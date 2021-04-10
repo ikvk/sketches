@@ -1,15 +1,17 @@
 """
-поиск файлов с похожими именами
+Поиск файлов с похожими именами
 """
 import os, re
+
+IGNORED_NAMES = ('back', 'cd', 'front', 'inside')
+IGNORED_EXTENSIONS = ('txt', 'log', 'jpg', 'jpeg', 'png', 'cue', '', 'm3u')
+PATH = 'D:\Музыка\Гитара\Tommy Emmanuel'
 
 
 def duplicate_files():
     res = {}
     file_cnt = 0
-    IGNORED_NAMES = ('back', 'cd', 'front', 'inside')
-    IGNORED_EXTENSIONS = ('txt', 'log', 'jpg', 'jpeg', 'png', 'cue', '', 'm3u')
-    for root, subdirs, files in os.walk('D:\Музыка\Гитара\Tommy Emmanuel'):
+    for root, subdirs, files in os.walk(PATH):
         for file_name in files:
             clear_file_name = re.sub("[^a-zA-Z ]+", "", file_name.rsplit('.', 1)[0]).lower()
             if clear_file_name in IGNORED_NAMES:
