@@ -6,7 +6,7 @@ import shutil
 import requests
 
 SAVE_PATH = 'E:/Мультфильмы/Советские'
-DATA_PATH = 'D:/develop/sketches/files/arjlover_multiki.txt'
+DATA_PATH = 'D:/develop/sketches/docs/arjlover_multiki.txt'
 
 
 def download_file(url: str, file_path: str):

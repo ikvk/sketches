@@ -1,0 +1,151 @@
+https://github.com/redmine/redmine
+debian 11
+юзер devs (судоер)
+
+базовое
+    sudo apt install curl
+
+скачать redmine
+    wget https://github.com/redmine/redmine/archive/refs/tags/5.0.0.zip
+    unzip 5.0.0.zip 
+    rm 5.0.0.zip 
+        #не надо sudo chown -R www-data redmine-5.0.0/
+    cd redmine-5.0.0
+
+установить postgresql
+    sudo apt update
+    sudo apt upgrade
+    echo "deb [signed-by=/usr/share/keyrings/postgresql-keyring.gpg] http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main" | sudo tee /etc/apt/sources.list.d/postgresql.list
+    curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /usr/share/keyrings/postgresql-keyring.gpg
+    sudo apt update
+    sudo apt install postgresql-13
+    sudo systemctl start postgresql
+    sudo systemctl enable postgresql
+    sudo systemctl status postgresql
+
+создать БД
+    sudo -u postgres -i
+    psql
+    CREATE ROLE redmine LOGIN ENCRYPTED PASSWORD 'password' NOINHERIT VALID UNTIL 'infinity';
+    CREATE DATABASE redmine WITH ENCODING='UTF8' OWNER=redmine;
+    ALTER DATABASE "redmine" SET datestyle="ISO,MDY";
+    COMMIT
+    logout
+
+установить RVM
+    sudo apt install gnupg2
+    gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+    \curl -sSL https://get.rvm.io | bash -s stable --rails
+        #не надо usermod -a -G rvm www-data
+    rvm install 3.0.0
+    rvm use 3.0.0
+    rvm gemset create redmine
+    sudo echo "rvm use ruby-3.0.0@redmine" > /home/devs/redmine-5.0.0/.rvmrc
+
+конфг бд
+    nano /home/devs/redmine-5.0.0/config/database.yml
+    production:
+      adapter: postgresql
+      database: redmine
+      host: localhost
+      username: redmine
+      password: password
+
+сгенерировать случайный ключ для сессий, создать структуру БД и инициализировать данные в БД
+    apt-get install libpq-dev
+    bundle install
+    bundle
+    bundle exec rake generate_secret_token
+    RAILS_ENV=production bundle exec rake db:migrate
+    RAILS_ENV=production REDMINE_LANG=ru bundle exec rake redmine:load_default_data
+    (проверка: bundle exec rails server -u puma -e production) Listening on http://0.0.0.0:3000
+    
+Setting up permissions (Windows users have to skip this section)
+   The user who runs Redmine must have write permission on the following
+   subdirectories: files, log, tmp & public/plugin_assets.
+   Assuming you run Redmine with a user named "devs":
+      sudo chown -R devs:devs files log tmp public/plugin_assets
+      sudo chmod -R 755 files log tmp public/plugin_assets
+
+puma
+    nano config/puma.rb
+        # /home/devs/redmine-5.0.0/config/puma.rb
+        rails_env = "production"
+        environment rails_env
+        app_dir = "/home/devs/redmine-5.0.0" # root rails app path
+        bind 'tcp://0.0.0.0:9292'
+        pidfile "#{app_dir}/puma.pid"
+        state_path "#{app_dir}/puma.state"
+        directory "#{app_dir}/"
+        # stdout_redirect "/var/log/puma.stdout.log", "/var/log/puma.stderr.log", true
+        workers 2
+        threads 1,2
+        activate_control_app "unix://#{app_dir}/pumactl.sock"
+        prune_bundler
+
+SystemD service
+    (путь puma: which puma)
+    sudo nano /usr/lib/systemd/system/redmine.service
+        [Unit]
+        Description=Redmine Puma server
+        After=network.target
+        [Service]
+        User=devs
+        Group=devs
+        WorkingDirectory=/home/devs/redmine-5.0.0
+        ExecStart=/bin/bash -l -c '/home/devs/.rvm/gems/ruby-3.0.0@redmine/bin/puma -C /home/devs/redmine-5.0.0/config/puma.rb'
+        ExecStop=/bin/bash -l -c '/home/devs/.rvm/gems/ruby-3.0.0@redmine/bin/puma -S /home/devs/redmine-5.0.0/config/puma.rb'
+        # KillMode=process
+        # Give a reasonable amount of time for the server to start up/shut down
+        TimeoutSec=60
+        Restart=always
+        StandardError=append:/var/log/redmine.err
+        CPUAccounting=yes
+        [Install]
+        WantedBy=multi-user.target
+
+nginx
+    sudo apt install nginx
+    sudo rm /etc/nginx/sites-enabled/default
+    sudo nano /etc/nginx/sites-available/redmine
+        upstream group_redmine {
+            server 0.0.0.0:9292;
+        }
+
+        server {
+            listen 80 default_server;
+            root /home/devs/redmine-5.0.0/public;
+            server_name localhost;
+
+            location / {
+                proxy_pass http://group_redmine;
+                proxy_set_header Host $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            }
+
+            location ~* ^/assets/ {
+                # Per RFC2616 - 1 year maximum expiry
+                expires 1y;
+                add_header Cache-Control public;
+
+                # Some browsers still send conditional-GET requests if there's a
+                # Last-Modified header or an ETag header even if they haven't
+                # reached the expiry date sent in the Expires header.
+                add_header Last-Modified "";
+                add_header ETag "";
+                break;
+            }
+        }
+    sudo ln -s /etc/nginx/sites-available/redmine /etc/nginx/sites-enabled/redmine
+    sudo systemctl restart nginx.service
+    
+config/configuration.yml
+    production:
+      delivery_method: :smtp
+      smtp_settings:
+        address: smtp.example.net
+        port: 25
+        domain: example.net
+        authentication: :login
+        user_name: redmine@example.net
+        password: redmine
