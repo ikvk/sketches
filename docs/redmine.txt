@@ -115,6 +115,7 @@ nginx
         server {
             listen 80 default_server;
             root /home/devs/redmine-5.0.0/public;
+            client_max_body_size 128m;
             server_name localhost;
 
             location / {
