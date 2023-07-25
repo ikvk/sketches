@@ -1,0 +1,14 @@
+https://www.youtube.com/watch?v=hw_t77lseQs
+
+
+https://github.com/piebro/physarum-latent-walk
+
+https://colab.research.google.com/github/piebro/physarum-latent-walk/blob/master/example.ipynb#scrollTo=0j8G5TBGZVLg
+
+
+https://github.com/ComputationalAndPhysicalSystems/Physarum
+
+https://github.com/MNoichl/physarum
+
+
+https://codeberg.org/microbyte/Physarum/src/branch/main/main.py
