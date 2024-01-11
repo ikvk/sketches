@@ -67,3 +67,12 @@ High level lib for work with email by IMAP:
 .. |shield_ver| image:: https://img.shields.io/pypi/v/imap_tools.svg
 .. |shield_lec| image:: https://img.shields.io/pypi/l/imap_tools.svg
 .. |shield_py| image:: https://img.shields.io/pypi/pyversions/imap_tools.svg
+
+===============  ================================================================================================
+Python version   3.5+
+PyPI             https://pypi.python.org/pypi/imap_tools/
+RFC              `IMAP4.1 <https://tools.ietf.org/html/rfc3501>`_,
+                 `EMAIL <https://tools.ietf.org/html/rfc2822>`_,
+                 `IMAP related RFCs <https://github.com/ikvk/imap_tools/blob/master/docs/IMAP_related_RFCs.txt>`_
+Repo mirror      https://gitflic.ru/project/ikvk/imap-tools
+===============  ================================================================================================
