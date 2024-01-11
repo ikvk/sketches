@@ -47,6 +47,20 @@ end
 
 123
 
+imap_tools 📧
+=============
+
+High level lib for work with email by IMAP:
+
+- Basic message operations: fetch, uids, numbers
+- Parsed email message attributes
+- Query builder for search criteria
+- Actions with emails: copy, delete, flag, move, append
+- Actions with folders: list, set, get, create, exists, rename, subscribe, delete, status
+- IDLE commands: start, poll, stop, wait
+- Exceptions on failed IMAP operations
+- No external dependencies, tested
+
 |shield_dm| |shield_ver| |shield_py| |shield_lec|
 
 .. |shield_dm| image:: https://img.shields.io/pypi/dm/imap_tools.svg
