@@ -63,10 +63,10 @@ High level lib for work with email by IMAP:
 
 |shield_dm| |shield_ver| |shield_py| |shield_lec|
 
-.. |shield_dm| image:: https://img.shields.io/pypi/dm/imap_tools.svg?style=social
-.. |shield_ver| image:: https://img.shields.io/pypi/v/imap_tools.svg?style=social
-.. |shield_lec| image:: https://img.shields.io/pypi/l/imap_tools.svg?style=social
-.. |shield_py| image:: https://img.shields.io/pypi/pyversions/imap_tools.svg?style=social
+.. |shield_dm| image:: https://img.shields.io/pypi/dm/imap_tools.svg
+.. |shield_ver| image:: https://img.shields.io/pypi/v/imap_tools.svg
+.. |shield_lec| image:: https://img.shields.io/pypi/l/imap_tools.svg
+.. |shield_py| image:: https://img.shields.io/pypi/pyversions/imap_tools.svg
 
 ===============  ================================================================================================
 Python version   3.5+
