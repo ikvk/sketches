@@ -46,3 +46,6 @@ end
 =======
 
 123
+
+.. image:: https://img.shields.io/pypi/dm/imap_tools.svg
+.. image:: https://img.shields.io/pypi/v/imap_tools.svg
