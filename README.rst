@@ -6,7 +6,7 @@ test go go
 Internal crossreference, like `example link`_.
 
 How it works
-------------
+==============
 
 1. one
 
@@ -50,6 +50,8 @@ end
 imap_tools 📧
 =============
 
+|shield_dm| |shield_ver| |shield_py| |shield_lec|
+
 High level lib for work with email by IMAP:
 
 - Basic message operations: fetch, uids, numbers
@@ -61,7 +63,7 @@ High level lib for work with email by IMAP:
 - Exceptions on failed IMAP operations
 - No external dependencies, tested
 
-|shield_dm| |shield_ver| |shield_py| |shield_lec|
+
 
 .. |shield_dm| image:: https://img.shields.io/pypi/dm/imap_tools.svg
 .. |shield_ver| image:: https://img.shields.io/pypi/v/imap_tools.svg
