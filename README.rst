@@ -47,7 +47,7 @@ end
 
 123
 
-|shield_dm| |shield_ver| |shield_lec| |shield_py|
+|shield_dm| |shield_lec| |shield_py| |shield_ver|
 
 .. |shield_dm| image:: https://img.shields.io/pypi/dm/imap_tools.svg
 .. |shield_ver| image:: https://img.shields.io/pypi/v/imap_tools.svg
