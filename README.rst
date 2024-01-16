@@ -1,41 +1,4 @@
 
-|shield_dm| |shield_ver| |shield_py| |shield_lec|
-
-imap_tools 📧
-=============
-
-High level lib for work with email by IMAP:
-
-- Basic message operations: fetch, uids, numbers
-- Parsed email message attributes
-- Query builder for search criteria
-- Actions with emails: copy, delete, flag, move, append
-- Actions with folders: list, set, get, create, exists, rename, subscribe, delete, status
-- IDLE commands: start, poll, stop, wait
-- Exceptions on failed IMAP operations
-- No external dependencies, tested
-
-.. |shield_dm| image:: https://img.shields.io/pypi/dm/imap_tools.svg?color=20B2AA
-.. |shield_ver| image:: https://img.shields.io/pypi/v/imap_tools.svg
-.. |shield_lec| image:: https://img.shields.io/pypi/l/imap_tools.svg
-.. |shield_py| image:: https://img.shields.io/pypi/pyversions/imap_tools.svg
-
-===============  ================================================================================================
-Python version   3.5+
-PyPI             https://pypi.python.org/pypi/imap_tools/
-RFC              `IMAP4.1 <https://tools.ietf.org/html/rfc3501>`_,
-                 `EMAIL <https://tools.ietf.org/html/rfc2822>`_,
-                 `IMAP related RFCs <https://github.com/ikvk/imap_tools/blob/master/docs/IMAP_related_RFCs.txt>`_
-Repo mirror      https://gitflic.ru/project/ikvk/imap-tools
-===============  ================================================================================================
-
-Installation
-------------
-::
-
-    $ pip install imap-tools
-
-
 test go go
 ==========
 
@@ -82,4 +45,41 @@ end
 =======
 
 taram param
+
+
+|shield_dm| |shield_ver| |shield_py| |shield_lec|
+
+imap_tools 📧
+=============
+
+High level lib for work with email by IMAP:
+
+- Basic message operations: fetch, uids, numbers
+- Parsed email message attributes
+- Query builder for search criteria
+- Actions with emails: copy, delete, flag, move, append
+- Actions with folders: list, set, get, create, exists, rename, subscribe, delete, status
+- IDLE commands: start, poll, stop, wait
+- Exceptions on failed IMAP operations
+- No external dependencies, tested
+
+.. |shield_dm| image:: https://img.shields.io/pypi/dm/imap_tools.svg
+.. |shield_ver| image:: https://img.shields.io/pypi/v/imap_tools.svg
+.. |shield_lec| image:: https://img.shields.io/pypi/l/imap_tools.svg
+.. |shield_py| image:: https://img.shields.io/pypi/pyversions/imap_tools.svg
+
+===============  ================================================================================================
+Python version   3.5+
+PyPI             https://pypi.python.org/pypi/imap_tools/
+RFC              `IMAP4.1 <https://tools.ietf.org/html/rfc3501>`_,
+                 `EMAIL <https://tools.ietf.org/html/rfc2822>`_,
+                 `IMAP related RFCs <https://github.com/ikvk/imap_tools/blob/master/docs/IMAP_related_RFCs.txt>`_
+Repo mirror      https://gitflic.ru/project/ikvk/imap-tools
+===============  ================================================================================================
+
+Installation
+------------
+::
+
+    $ pip install imap-tools
 
